@@ -13,6 +13,7 @@ export class PokemonListComponent implements OnInit {
   faXmark = faXmark;
 
   currentRedColorIndex = 0;
+  listIsRed = false;
 
   constructor() {}
 
@@ -34,9 +35,11 @@ export class PokemonListComponent implements OnInit {
     setTimeout(() => {
       this.pokemonJustAdded = false;
     }, 3000);
+    this.listIsRed = this.pokemons.length > 5;
   }
 
   deletePokemon(pokemonIndex: number) {
     this.pokemons.splice(pokemonIndex, 1);
+    this.listIsRed = this.pokemons.length > 5;
   }
 }

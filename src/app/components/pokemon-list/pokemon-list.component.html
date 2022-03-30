@@ -18,7 +18,7 @@
   increaseColor
 </button>
 
-<ul>
+<ul [ngClass]="{ 'red': listIsRed }">
   <li [ngStyle]="{backgroundColor: getCurrentColor()}" *ngFor="let pokemon of pokemons; let pokemonIndex = index">
     {{ pokemon }}
 
