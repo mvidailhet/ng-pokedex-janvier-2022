@@ -12,9 +12,19 @@ export class PokemonListComponent implements OnInit {
   pokemonJustAdded = false;
   faXmark = faXmark;
 
+  currentRedColorIndex = 0;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  increaseColor() {
+    this.currentRedColorIndex += 50;
+  }
+
+  getCurrentColor() {
+    return `rgb(${this.currentRedColorIndex % 250}, 255, 255)`;
+  }
 
   addPokemon() {
     this.pokemons.push(this.pokemonName);

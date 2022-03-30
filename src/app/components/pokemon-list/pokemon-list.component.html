@@ -10,8 +10,16 @@
   add pokemon
 </button>
 
+<button
+  type="button"
+  (click)="increaseColor()"
+  class="btn btn-secondary"
+>
+  increaseColor
+</button>
+
 <ul>
-  <li *ngFor="let pokemon of pokemons; let pokemonIndex = index">
+  <li [ngStyle]="{backgroundColor: getCurrentColor()}" *ngFor="let pokemon of pokemons; let pokemonIndex = index">
     {{ pokemon }}
 
     <fa-icon [icon]="faXmark" (click)="deletePokemon(pokemonIndex)"></fa-icon>
