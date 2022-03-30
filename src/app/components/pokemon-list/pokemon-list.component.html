@@ -1,5 +1,7 @@
 <p>Pokemons caught: {{ nbCaught }}</p>
+<input type="text" [(ngModel)]="pokemonName" />
 
-<button (click)="addPokemon()">add pokemon</button>
+<button [disabled]="pokemonName === ''" (click)="addPokemon()">add pokemon</button>
 <button [disabled]="nbCaught <= 0" (click)="removePokemon()">remove pokemon</button>
 
+{{ pokemonName }}
