@@ -1,7 +1,10 @@
 <p>Pokemons caught: {{ nbCaught }}</p>
 <input type="text" [(ngModel)]="pokemonName" />
 
-<button [disabled]="pokemonName === ''" (click)="addPokemon()">add pokemon</button>
-<button [disabled]="nbCaught <= 0" (click)="removePokemon()">remove pokemon</button>
+<button type="button" [disabled]="pokemonName === ''" (click)="addPokemon()" class="btn btn-primary">add pokemon</button>
+<button type="button" [disabled]="nbCaught <= 0" class="btn btn-primary" (click)="removePokemon()">remove pokemon</button>
 
-<div *ngIf="pokemonJustAdded">pokemon was added</div>
+
+<ngb-toast header="Notification de ouf" *ngIf="pokemonJustAdded" (hide)="pokemonJustAdded = false">
+  pokemon was added
+</ngb-toast>
