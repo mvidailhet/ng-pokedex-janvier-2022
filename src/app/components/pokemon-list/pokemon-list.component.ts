@@ -30,4 +30,8 @@ export class PokemonListComponent implements OnInit {
     if (this.nbCaught <= 0) return;
     this.nbCaught -= 1;
   }
+
+  deletePokemon(pokemonIndex: number) {
+    this.pokemons.splice(pokemonIndex, 1);
+  }
 }
