@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -6,17 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pokemon-list.component.scss'],
 })
 export class PokemonListComponent implements OnInit {
-  nbCaught = 0;
   pokemonName = '';
   pokemons: string[] = [];
   pokemonJustAdded = false;
+  faXmark = faXmark;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   addPokemon() {
-    this.nbCaught += 1;
     this.pokemons.push(this.pokemonName);
     this.pokemonName = '';
 
@@ -24,11 +24,6 @@ export class PokemonListComponent implements OnInit {
     setTimeout(() => {
       this.pokemonJustAdded = false;
     }, 3000);
-  }
-
-  removePokemon() {
-    if (this.nbCaught <= 0) return;
-    this.nbCaught -= 1;
   }
 
   deletePokemon(pokemonIndex: number) {
