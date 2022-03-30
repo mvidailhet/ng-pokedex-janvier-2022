@@ -9,6 +9,7 @@ export class PokemonListComponent implements OnInit {
   nbCaught = 0;
   pokemonName = '';
   pokemons: string[] = [];
+  pokemonJustAdded = false;
 
   constructor() {}
 
@@ -17,7 +18,12 @@ export class PokemonListComponent implements OnInit {
   addPokemon() {
     this.nbCaught += 1;
     this.pokemons.push(this.pokemonName);
-    console.log(this.pokemons);
+    this.pokemonName = '';
+
+    this.pokemonJustAdded = true;
+    setTimeout(() => {
+      this.pokemonJustAdded = false;
+    }, 3000);
   }
 
   removePokemon() {
