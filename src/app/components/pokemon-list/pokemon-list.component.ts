@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PokemonListComponent implements OnInit {
   nbCaught = 0;
   pokemonName = '';
+  pokemons: string[] = [];
 
   constructor() {}
 
@@ -15,6 +16,8 @@ export class PokemonListComponent implements OnInit {
 
   addPokemon() {
     this.nbCaught += 1;
+    this.pokemons.push(this.pokemonName);
+    console.log(this.pokemons);
   }
 
   removePokemon() {
