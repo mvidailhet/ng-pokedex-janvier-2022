@@ -5,7 +5,7 @@ export interface Pokemon {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PokemonsService {
   pokemons: Pokemon[] = [];
@@ -17,5 +17,10 @@ export class PokemonsService {
     this.pokemons.push(newPokemon);
   }
 
-  constructor() { }
+  deletePokemon(pokemonIndex: number | undefined) {
+    if (pokemonIndex === undefined) throw new Error('No pokemon index defined !');
+    this.pokemons.splice(pokemonIndex, 1);
+  }
+
+  constructor() {}
 }

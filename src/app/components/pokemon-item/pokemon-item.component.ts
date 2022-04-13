@@ -1,29 +1,29 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { PokemonsService } from 'src/app/services/pokemons.service';
 
 @Component({
   selector: 'app-pokemon-item',
   templateUrl: './pokemon-item.component.html',
-  styleUrls: ['./pokemon-item.component.scss']
+  styleUrls: ['./pokemon-item.component.scss'],
 })
 export class PokemonItemComponent implements OnInit, OnDestroy {
   @Input('pokemonName') name: string | undefined;
-  @Output() delete = new EventEmitter<void>();
+  @Input() index: number | undefined;
   faXmark = faXmark;
 
-  constructor() {
-  }
+  constructor(private pokemonsService: PokemonsService) {}
 
   ngOnDestroy(): void {
     console.log('pokemon item destroyed', this.name);
   }
 
   deleteClick() {
-    this.delete.emit();
+    console.log(this.index);
+    this.pokemonsService.deletePokemon(this.index);
   }
 
   ngOnInit(): void {
-    console.log(this.name);
+    console.log(this.index);
   }
-
 }

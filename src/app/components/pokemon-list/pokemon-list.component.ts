@@ -56,9 +56,4 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
 
     //this.loggingService.logItemCreated(newPokemon.name);
   }
-
-  deletePokemon(pokemonIndex: number) {
-    this.pokemons.splice(pokemonIndex, 1);
-    this.listIsRed = this.pokemons.length > 5;
-  }
 }
