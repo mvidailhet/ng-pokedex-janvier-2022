@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,12 +6,16 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './pokemon-item.component.html',
   styleUrls: ['./pokemon-item.component.scss']
 })
-export class PokemonItemComponent implements OnInit {
+export class PokemonItemComponent implements OnInit, OnDestroy {
   @Input('pokemonName') name: string | undefined;
   @Output() delete = new EventEmitter<void>();
   faXmark = faXmark;
 
   constructor() {
+  }
+
+  ngOnDestroy(): void {
+    console.log('pokemon item destroyed', this.name);
   }
 
   deleteClick() {
