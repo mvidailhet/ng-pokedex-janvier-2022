@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
+export interface Pokemon {
+  name: string;
+}
+
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -8,7 +12,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 })
 export class PokemonListComponent implements OnInit {
   pokemonName = '';
-  pokemons: string[] = [];
+  pokemons: Pokemon[] = [];
   pokemonJustAdded = false;
   faXmark = faXmark;
 
@@ -28,7 +32,8 @@ export class PokemonListComponent implements OnInit {
   }
 
   addPokemon() {
-    this.pokemons.push(this.pokemonName);
+    const newPokemon = { name: this.pokemonName };
+    this.pokemons.push(newPokemon);
     this.pokemonName = '';
 
     this.pokemonJustAdded = true;
