@@ -7,7 +7,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./pokemon-item.component.scss']
 })
 export class PokemonItemComponent implements OnInit {
-  @Input() name: string | undefined;
+  @Input('pokemonName') name: string | undefined;
   faXmark = faXmark;
 
   constructor() { }
