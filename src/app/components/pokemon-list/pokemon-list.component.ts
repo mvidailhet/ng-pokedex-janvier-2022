@@ -7,10 +7,7 @@ import {
 } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { LoggingService } from 'src/app/services/logging.service';
-
-export interface Pokemon {
-  name: string;
-}
+import { PokemonsService } from 'src/app/services/pokemons.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -19,17 +16,19 @@ export interface Pokemon {
 })
 export class PokemonListComponent implements OnInit, AfterViewInit {
   pokemonName = '';
-  pokemons: Pokemon[] = [];
   pokemonJustAdded = false;
   faXmark = faXmark;
+  pokemons = this.pokemonsService.pokemons;
 
   @ViewChild('pokemonTextInput') pokemonTextInput!: ElementRef;
 
   currentRedColorIndex = 0;
   listIsRed = false;
 
-  constructor(private loggingService: LoggingService) {
-  }
+  constructor(
+    private loggingService: LoggingService,
+    private pokemonsService: PokemonsService
+  ) {}
 
   ngAfterViewInit(): void {
     //console.log(this.pokemonTextInput.nativeElement.value);
@@ -45,9 +44,8 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
     return `rgb(${this.currentRedColorIndex % 250}, 255, 255)`;
   }
 
-  addPokemon(pokemonTextInput: HTMLInputElement) {
-    const newPokemon = { name: this.pokemonName };
-    this.pokemons.push(newPokemon);
+  addPokemon() {
+    this.pokemonsService.addPokemon(this.pokemonName);
     this.pokemonName = '';
 
     this.pokemonJustAdded = true;
@@ -56,7 +54,7 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
     }, 3000);
     this.listIsRed = this.pokemons.length > 5;
 
-    this.loggingService.logItemCreated(newPokemon.name);
+    //this.loggingService.logItemCreated(newPokemon.name);
   }
 
   deletePokemon(pokemonIndex: number) {
