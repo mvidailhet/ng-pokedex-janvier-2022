@@ -1,6 +1,18 @@
 <p>Pokemons caught: {{ pokemons.length }}</p>
 <input type="text" [(ngModel)]="pokemonName" />
 
+<ng-container [ngSwitch]="pokemons.length">
+  <p *ngSwitchCase="0">
+    Aucun pokemon ajouté
+  </p>
+  <p *ngSwitchCase="5">
+    Vous avez pile 5 pokemons
+  </p>
+  <p *ngSwitchDefault>
+    Vous avez {{ pokemons.length }} pokemons
+  </p>
+</ng-container>
+
 <button
   type="button"
   [disabled]="pokemonName === ''"
