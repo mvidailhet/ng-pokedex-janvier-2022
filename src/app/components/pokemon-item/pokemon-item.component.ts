@@ -11,13 +11,15 @@ export class PokemonItemComponent implements OnInit {
   @Output() delete = new EventEmitter<void>();
   faXmark = faXmark;
 
-  constructor() { }
+  constructor() {
+  }
 
   deleteClick() {
     this.delete.emit();
   }
 
   ngOnInit(): void {
+    console.log(this.name);
   }
 
 }

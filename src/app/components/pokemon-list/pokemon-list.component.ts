@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export interface Pokemon {
@@ -10,18 +10,28 @@ export interface Pokemon {
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.scss'],
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent implements OnInit, AfterViewInit {
   pokemonName = '';
   pokemons: Pokemon[] = [];
   pokemonJustAdded = false;
   faXmark = faXmark;
 
+  @ViewChild('pokemonTextInput') pokemonTextInput!: ElementRef;
+
   currentRedColorIndex = 0;
   listIsRed = false;
 
-  constructor() {}
+  constructor() {
 
-  ngOnInit(): void {}
+
+  }
+  ngAfterViewInit(): void {
+    console.log(this.pokemonTextInput.nativeElement.value);
+  }
+
+  ngOnInit(): void {
+    console.log(this.pokemonTextInput);
+  }
 
   increaseColor() {
     this.currentRedColorIndex += 50;
@@ -41,10 +51,6 @@ export class PokemonListComponent implements OnInit {
       this.pokemonJustAdded = false;
     }, 3000);
     this.listIsRed = this.pokemons.length > 5;
-
-    console.log(pokemonTextInput.value);
-
-
   }
 
   deletePokemon(pokemonIndex: number) {
