@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -8,9 +8,14 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 })
 export class PokemonItemComponent implements OnInit {
   @Input('pokemonName') name: string | undefined;
+  @Output() delete = new EventEmitter<void>();
   faXmark = faXmark;
 
   constructor() { }
+
+  deleteClick() {
+    this.delete.emit();
+  }
 
   ngOnInit(): void {
   }

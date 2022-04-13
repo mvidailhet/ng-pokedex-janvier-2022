@@ -32,7 +32,7 @@
 
 <ul [ngClass]="{ 'red': listIsRed }">
   <li [ngStyle]="{backgroundColor: getCurrentColor()}" *ngFor="let pokemon of pokemons; let pokemonIndex = index">
-    <app-pokemon-item [pokemonName]="pokemon.name"></app-pokemon-item>
+    <app-pokemon-item [pokemonName]="pokemon.name" (delete)="deletePokemon(pokemonIndex)"></app-pokemon-item>
   </li>
 </ul>
 
