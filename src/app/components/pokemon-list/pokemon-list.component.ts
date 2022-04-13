@@ -19,6 +19,7 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
   pokemonJustAdded = false;
   faXmark = faXmark;
   pokemons = this.pokemonsService.pokemons;
+  errorMessage: string | undefined;
 
   @ViewChild('pokemonTextInput') pokemonTextInput!: ElementRef;
 
@@ -45,7 +46,12 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
   }
 
   addPokemon() {
-    this.pokemonsService.addPokemon(this.pokemonName);
+    const pokemonAdded = this.pokemonsService.addPokemon(this.pokemonName);
+    if (!pokemonAdded) {
+      this.errorMessage = 'Un pokemon avec ce nom existe déjà dans la liste';
+      return;
+    }
+
     this.pokemonName = '';
 
     this.pokemonJustAdded = true;

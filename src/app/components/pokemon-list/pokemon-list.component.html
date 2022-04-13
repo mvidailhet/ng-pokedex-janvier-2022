@@ -1,6 +1,10 @@
 <p>Pokemons caught: {{ pokemons.length }}</p>
 <input #pokemonTextInput type="text" [(ngModel)]="pokemonName" />
 
+<div class="error">
+  {{ errorMessage }}
+</div>
+
 <ng-container [ngSwitch]="pokemons.length">
   <p *ngSwitchCase="0">
     Aucun pokemon ajouté
@@ -32,7 +36,7 @@
 
 <ul [ngClass]="{ 'red': listIsRed }">
   <li [ngStyle]="{backgroundColor: getCurrentColor()}" *ngFor="let pokemon of pokemons; let pokemonIndex = index">
-    <app-pokemon-item class="my-item" [index]="pokemonIndex" [pokemonName]="pokemon.name"></app-pokemon-item>
+    <app-pokemon-item class="my-item" [pokemonName]="pokemon.name"></app-pokemon-item>
   </li>
 </ul>
 

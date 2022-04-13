@@ -11,15 +11,33 @@ export class PokemonsService {
   pokemons: Pokemon[] = [];
 
   addPokemon(pokemonName: string) {
+    if (this.pokemonExists(pokemonName)) return false;
     const newPokemon = {
       name: pokemonName,
     };
     this.pokemons.push(newPokemon);
+    return true;
+  }
+
+  pokemonExists(pokemonName: string | undefined): boolean {
+    return (
+      this.pokemons.findIndex((pokemon) => pokemon.name.toLowerCase() === pokemonName?.toLowerCase()) > -1
+    );
   }
 
   deletePokemon(pokemonIndex: number | undefined) {
-    if (pokemonIndex === undefined) throw new Error('No pokemon index defined !');
+    if (pokemonIndex === undefined)
+      throw new Error('No pokemon index defined !');
     this.pokemons.splice(pokemonIndex, 1);
+  }
+
+  deletePokemonByName(nameToDelete: string | undefined) {
+    const pokemonToDeleteIndex = this.pokemons.findIndex((pokemon) => {
+      return pokemon.name === nameToDelete;
+    });
+    if (pokemonToDeleteIndex === -1)
+      throw new Error('No pokemon to delete found !');
+    this.deletePokemon(pokemonToDeleteIndex);
   }
 
   constructor() {}

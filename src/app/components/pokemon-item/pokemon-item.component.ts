@@ -9,7 +9,7 @@ import { PokemonsService } from 'src/app/services/pokemons.service';
 })
 export class PokemonItemComponent implements OnInit, OnDestroy {
   @Input('pokemonName') name: string | undefined;
-  @Input() index: number | undefined;
+  /* @Input() index: number | undefined; */
   faXmark = faXmark;
 
   constructor(private pokemonsService: PokemonsService) {}
@@ -19,11 +19,10 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
   }
 
   deleteClick() {
-    console.log(this.index);
-    this.pokemonsService.deletePokemon(this.index);
+    this.pokemonsService.deletePokemonByName(this.name);
+    //this.pokemonsService.deletePokemon(this.index);
   }
 
   ngOnInit(): void {
-    console.log(this.index);
   }
 }
