@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { PokemonItemComponent } from './components/pokemon-item/pokemon-item.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonItemComponent,
-    PokemonListComponent
+    PokemonListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
