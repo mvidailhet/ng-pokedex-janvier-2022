@@ -1,5 +1,12 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { LoggingService } from 'src/app/services/logging.service';
 
 export interface Pokemon {
   name: string;
@@ -21,17 +28,14 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
   currentRedColorIndex = 0;
   listIsRed = false;
 
-  constructor() {
-
-
+  constructor(private loggingService: LoggingService) {
   }
+
   ngAfterViewInit(): void {
-    console.log(this.pokemonTextInput.nativeElement.value);
+    //console.log(this.pokemonTextInput.nativeElement.value);
   }
 
-  ngOnInit(): void {
-    console.log(this.pokemonTextInput);
-  }
+  ngOnInit(): void {}
 
   increaseColor() {
     this.currentRedColorIndex += 50;
@@ -51,6 +55,8 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
       this.pokemonJustAdded = false;
     }, 3000);
     this.listIsRed = this.pokemons.length > 5;
+
+    this.loggingService.logItemCreated(newPokemon.name);
   }
 
   deletePokemon(pokemonIndex: number) {
