@@ -1,5 +1,5 @@
 <p>Pokemons caught: {{ pokemons.length }}</p>
-<input type="text" [(ngModel)]="pokemonName" />
+<input #pokemonTextInput type="text" [(ngModel)]="pokemonName" />
 
 <ng-container [ngSwitch]="pokemons.length">
   <p *ngSwitchCase="0">
@@ -16,7 +16,7 @@
 <button
   type="button"
   [disabled]="pokemonName === ''"
-  (click)="addPokemon()"
+  (click)="addPokemon(pokemonTextInput)"
   class="btn btn-primary"
 >
   add pokemon

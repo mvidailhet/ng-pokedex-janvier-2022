@@ -31,7 +31,7 @@ export class PokemonListComponent implements OnInit {
     return `rgb(${this.currentRedColorIndex % 250}, 255, 255)`;
   }
 
-  addPokemon() {
+  addPokemon(pokemonTextInput: HTMLInputElement) {
     const newPokemon = { name: this.pokemonName };
     this.pokemons.push(newPokemon);
     this.pokemonName = '';
@@ -41,6 +41,10 @@ export class PokemonListComponent implements OnInit {
       this.pokemonJustAdded = false;
     }, 3000);
     this.listIsRed = this.pokemons.length > 5;
+
+    console.log(pokemonTextInput.value);
+
+
   }
 
   deletePokemon(pokemonIndex: number) {
