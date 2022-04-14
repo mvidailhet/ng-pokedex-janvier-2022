@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 
+export enum PokemonTypeEnum {
+  FIRE = 'FIRE',
+  GRASS = 'GRASS',
+  WATER = 'WATER',
+  POISON = 'POISON',
+}
 export interface Pokemon {
   name: string;
+  type: PokemonTypeEnum;
 }
 
 @Injectable({
@@ -10,10 +17,11 @@ export interface Pokemon {
 export class PokemonsService {
   pokemons: Pokemon[] = [];
 
-  addPokemon(pokemonName: string) {
+  addPokemon(pokemonName: string, pokemonType: PokemonTypeEnum) {
     if (this.pokemonExists(pokemonName)) return false;
     const newPokemon = {
       name: pokemonName,
+      type: pokemonType,
     };
     this.pokemons.push(newPokemon);
     return true;
@@ -21,7 +29,9 @@ export class PokemonsService {
 
   pokemonExists(pokemonName: string | undefined): boolean {
     return (
-      this.pokemons.findIndex((pokemon) => pokemon.name.toLowerCase() === pokemonName?.toLowerCase()) > -1
+      this.pokemons.findIndex(
+        (pokemon) => pokemon.name.toLowerCase() === pokemonName?.toLowerCase()
+      ) > -1
     );
   }
 

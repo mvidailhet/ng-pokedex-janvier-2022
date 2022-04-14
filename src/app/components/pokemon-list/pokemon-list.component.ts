@@ -1,11 +1,8 @@
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { LoggingService } from 'src/app/services/logging.service';
-import { PokemonsService } from 'src/app/services/pokemons.service';
+  PokemonsService,
+  PokemonTypeEnum,
+} from 'src/app/services/pokemons.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -14,21 +11,28 @@ import { PokemonsService } from 'src/app/services/pokemons.service';
 })
 export class PokemonListComponent implements OnInit {
   pokemonName = '';
+  pokemonType: PokemonTypeEnum | undefined;
   pokemonJustAdded = false;
   pokemons = this.pokemonsService.pokemons;
   errorMessage: string | undefined;
+  PokemonTypeEnum = PokemonTypeEnum
 
   @ViewChild('pokemonTextInput') pokemonTextInput!: ElementRef;
 
-  constructor(
-    private loggingService: LoggingService,
-    private pokemonsService: PokemonsService
-  ) {}
+  constructor(private pokemonsService: PokemonsService) {}
 
   ngOnInit(): void {}
 
   addPokemon() {
-    const pokemonAdded = this.pokemonsService.addPokemon(this.pokemonName);
+    if (!this.pokemonType) {
+      this.errorMessage = 'Il faut choisir un type de pokémon';
+      return;
+    }
+
+    const pokemonAdded = this.pokemonsService.addPokemon(
+      this.pokemonName,
+      this.pokemonType,
+    );
     if (!pokemonAdded) {
       this.errorMessage = 'Un pokemon avec ce nom existe déjà dans la liste';
       return;
@@ -40,6 +44,5 @@ export class PokemonListComponent implements OnInit {
     setTimeout(() => {
       this.pokemonJustAdded = false;
     }, 3000);
-    //this.loggingService.logItemCreated(newPokemon.name);
   }
 }
