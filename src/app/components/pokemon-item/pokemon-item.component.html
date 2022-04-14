@@ -1,8 +1,8 @@
-<div class="card">
+<div class="card" routerLink="/pokemon">
   <div class="card-body">
     <h5 class="card-title">{{ name }}</h5>
     <div class="close-button-container p-3">
-      <button type="button" class="btn-close" aria-label="Close"></button>
+      <button (click)="deleteClick()" type="button" class="btn-close" aria-label="Close"></button>
     </div>
   </div>
 </div>
