@@ -10,6 +10,11 @@ import { PokemonListComponent } from './components/pokemon-list/pokemon-list.com
 import { HomeComponent } from './pages/home/home.component';
 import { PokemonComponent } from './pages/pokemon/pokemon.component';
 
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
+
 @NgModule({
   declarations: [
     AppComponent,

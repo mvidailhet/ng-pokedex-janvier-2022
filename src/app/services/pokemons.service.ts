@@ -9,6 +9,7 @@ export enum PokemonTypeEnum {
 export interface Pokemon {
   name: string;
   type: PokemonTypeEnum;
+  creation_date: Date;
 }
 
 @Injectable({
@@ -22,6 +23,7 @@ export class PokemonsService {
     const newPokemon = {
       name: pokemonName,
       type: pokemonType,
+      creation_date: new Date(),
     };
     this.pokemons.push(newPokemon);
     return true;

@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { PokemonsService } from 'src/app/services/pokemons.service';
+import { PokemonsService, PokemonTypeEnum } from 'src/app/services/pokemons.service';
 
 @Component({
   selector: 'app-pokemon-item',
@@ -8,6 +8,8 @@ import { PokemonsService } from 'src/app/services/pokemons.service';
 })
 export class PokemonItemComponent implements OnInit, OnDestroy {
   @Input('pokemonName') name: string | undefined;
+  @Input() type!: PokemonTypeEnum;
+  @Input() creationDate!: Date;
 
   constructor(private pokemonsService: PokemonsService) {}
 
@@ -17,7 +19,6 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
 
   deleteClick() {
     this.pokemonsService.deletePokemonByName(this.name);
-    //this.pokemonsService.deletePokemon(this.index);
   }
 
   ngOnInit(): void {
