@@ -1,6 +1,8 @@
-<p>Pokemons caught: {{ pokemons.length }}</p>
-<input #pokemonTextInput type="text" [(ngModel)]="pokemonName" />
+<h2>Ajouter un pokémon</h2>
 
+<p>Pokemons atrrapés: {{ pokemons.length }}</p>
+
+<input #pokemonTextInput type="text" [(ngModel)]="pokemonName" />
 <div class="error">
   {{ errorMessage }}
 </div>
@@ -33,6 +35,8 @@
 >
   increaseColor
 </button>
+
+<h2>Liste des pokémons</h2>
 
 <ul [ngClass]="{ 'red': listIsRed }">
   <li routerLink="/pokemon" [ngStyle]="{backgroundColor: getCurrentColor()}" *ngFor="let pokemon of pokemons; let pokemonIndex = index">
