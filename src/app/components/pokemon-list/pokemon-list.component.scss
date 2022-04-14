@@ -1,5 +1,8 @@
+// utilisation des couleurs bootstrap css variables
+// https://getbootstrap.com/docs/5.1/customize/css-variables/
+
 .my-item {
-  --title-color: red;
+  --title-color: var(--bs-primary);
 }
 
 .invalid-feedback {
