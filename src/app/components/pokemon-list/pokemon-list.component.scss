@@ -1,17 +1,3 @@
-:host {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.big {
-  font-size: 50px;
-}
-
-ul.red {
-  background-color: red;
-}
-
 li {
   padding: 30px;
   font-size: 25px;
@@ -21,6 +7,6 @@ li {
   --title-color: red;
 }
 
-/* .my-item ::ng-deep .title {
-  color: red;
-} */
+.invalid-feedback {
+  display: block;
+}

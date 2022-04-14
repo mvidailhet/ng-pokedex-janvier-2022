@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   OnInit,
@@ -14,7 +13,7 @@ import { PokemonsService } from 'src/app/services/pokemons.service';
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.scss'],
 })
-export class PokemonListComponent implements OnInit, AfterViewInit {
+export class PokemonListComponent implements OnInit {
   pokemonName = '';
   pokemonJustAdded = false;
   faXmark = faXmark;
@@ -23,27 +22,12 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
 
   @ViewChild('pokemonTextInput') pokemonTextInput!: ElementRef;
 
-  currentRedColorIndex = 0;
-  listIsRed = false;
-
   constructor(
     private loggingService: LoggingService,
     private pokemonsService: PokemonsService
   ) {}
 
-  ngAfterViewInit(): void {
-    //console.log(this.pokemonTextInput.nativeElement.value);
-  }
-
   ngOnInit(): void {}
-
-  increaseColor() {
-    this.currentRedColorIndex += 50;
-  }
-
-  getCurrentColor() {
-    return `rgb(${this.currentRedColorIndex % 250}, 255, 255)`;
-  }
 
   addPokemon() {
     const pokemonAdded = this.pokemonsService.addPokemon(this.pokemonName);
@@ -58,8 +42,6 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.pokemonJustAdded = false;
     }, 3000);
-    this.listIsRed = this.pokemons.length > 5;
-
     //this.loggingService.logItemCreated(newPokemon.name);
   }
 }

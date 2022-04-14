@@ -1,46 +1,44 @@
 <h2>Ajouter un pokémon</h2>
 
-<p>Pokemons atrrapés: {{ pokemons.length }}</p>
-
-<input #pokemonTextInput type="text" [(ngModel)]="pokemonName" />
-<div class="error">
-  {{ errorMessage }}
+<div class="needs-validation p-3">
+  <div class="mb-3 row">
+    <label for="pokemonTextInput" class="col-sm-2 col-form-label">Nom</label>
+    <div class="col-sm-10">
+      <input
+        class="form-control"
+        #pokemonTextInput
+        id="pokemonTextInput"
+        type="text"
+        [(ngModel)]="pokemonName"
+      />
+    </div>
+  </div>
+  <div class="invalid-feedback">
+    {{ errorMessage }}
+  </div>
+  <div class="col-12">
+    <button
+      type="submit"
+      [disabled]="pokemonName === ''"
+      (click)="addPokemon()"
+      class="btn btn-primary"
+    >
+      Ajouter
+    </button>
+  </div>
 </div>
 
-<ng-container [ngSwitch]="pokemons.length">
-  <p *ngSwitchCase="0">
-    Aucun pokemon ajouté
-  </p>
-  <p *ngSwitchCase="5">
-    Vous avez pile 5 pokemons
-  </p>
-  <p *ngSwitchDefault>
-    Vous avez {{ pokemons.length }} pokemons
-  </p>
-</ng-container>
+<h2>Pokémons ({{ pokemons.length }})</h2>
 
-<button
-  type="button"
-  [disabled]="pokemonName === ''"
-  (click)="addPokemon()"
-  class="btn btn-primary"
->
-  add pokemon
-</button>
-
-<button
-  type="button"
-  (click)="increaseColor()"
-  class="btn btn-secondary"
->
-  increaseColor
-</button>
-
-<h2>Liste des pokémons</h2>
-
-<ul [ngClass]="{ 'red': listIsRed }">
-  <li routerLink="/pokemon" [ngStyle]="{backgroundColor: getCurrentColor()}" *ngFor="let pokemon of pokemons; let pokemonIndex = index">
-    <app-pokemon-item class="my-item" [pokemonName]="pokemon.name"></app-pokemon-item>
+<ul>
+  <li
+    routerLink="/pokemon"
+    *ngFor="let pokemon of pokemons; let pokemonIndex = index"
+  >
+    <app-pokemon-item
+      class="my-item"
+      [pokemonName]="pokemon.name"
+    ></app-pokemon-item>
   </li>
 </ul>
 
