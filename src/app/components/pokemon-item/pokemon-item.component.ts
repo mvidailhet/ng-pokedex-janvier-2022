@@ -1,5 +1,4 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { PokemonsService } from 'src/app/services/pokemons.service';
 
 @Component({
@@ -9,8 +8,6 @@ import { PokemonsService } from 'src/app/services/pokemons.service';
 })
 export class PokemonItemComponent implements OnInit, OnDestroy {
   @Input('pokemonName') name: string | undefined;
-  /* @Input() index: number | undefined; */
-  faXmark = faXmark;
 
   constructor(private pokemonsService: PokemonsService) {}
 

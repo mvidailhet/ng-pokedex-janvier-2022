@@ -4,7 +4,6 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { LoggingService } from 'src/app/services/logging.service';
 import { PokemonsService } from 'src/app/services/pokemons.service';
 
@@ -16,7 +15,6 @@ import { PokemonsService } from 'src/app/services/pokemons.service';
 export class PokemonListComponent implements OnInit {
   pokemonName = '';
   pokemonJustAdded = false;
-  faXmark = faXmark;
   pokemons = this.pokemonsService.pokemons;
   errorMessage: string | undefined;
 
