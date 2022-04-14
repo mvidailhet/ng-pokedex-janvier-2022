@@ -5,4 +5,15 @@
 
 .card-title {
   color: var(--title-color);
+  margin-bottom: 0;
+}
+
+.close-button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
