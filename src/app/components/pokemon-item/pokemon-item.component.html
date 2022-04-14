@@ -4,7 +4,7 @@
       <h5 class="card-title">{{ pokemon.name }}</h5>
     </div>
     <div class="col">
-      <span class="badge bg-primary">{{ pokemon.type }}</span>
+      <span class="badge pokemon-background-type pokemon-background-type-{{pokemon.type}}">{{ pokemon.type }}</span>
     </div>
     <div class="col">
       {{ pokemon.creation_date | date:'EEEE, d MMMM y':'':'fr-FR' }}

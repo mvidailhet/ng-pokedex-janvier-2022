@@ -1,3 +1,20 @@
+$pokemon-type-colors: (
+  GRASS: green,
+  FIRE: orange,
+  WATER: blue,
+  POISON: purple,
+);
+
+.pokemon-background-type {
+  background-color: grey;
+}
+
+@each $name, $hex in $pokemon-type-colors {
+  .pokemon-background-type-#{$name} {
+    background-color: $hex;
+  }
+}
+
 :host {
   display: block;
   --title-color: green;
