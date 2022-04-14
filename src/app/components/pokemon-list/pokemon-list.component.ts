@@ -15,7 +15,7 @@ export class PokemonListComponent implements OnInit {
   pokemonJustAdded = false;
   pokemons = this.pokemonsService.pokemons;
   errorMessage: string | undefined;
-  PokemonTypeEnum = PokemonTypeEnum
+  PokemonTypeEnum = PokemonTypeEnum;
 
   @ViewChild('pokemonTextInput') pokemonTextInput!: ElementRef;
 

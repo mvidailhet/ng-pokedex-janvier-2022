@@ -1,13 +1,13 @@
 <div class="card" routerLink="/pokemon">
   <div class="card-body row">
     <div class="col">
-      <h5 class="card-title">{{ name }}</h5>
+      <h5 class="card-title">{{ pokemon.name }}</h5>
     </div>
     <div class="col">
-      <span class="badge bg-primary">{{ type }}</span>
+      <span class="badge bg-primary">{{ pokemon.type }}</span>
     </div>
     <div class="col">
-      {{ creationDate | date:'d MMMM Y':'':'fr-FR' }}
+      {{ pokemon.creation_date | date:'EEEE, d MMMM y':'':'fr-FR' }}
     </div>
   </div>
   <div class="close-button-container p-3">

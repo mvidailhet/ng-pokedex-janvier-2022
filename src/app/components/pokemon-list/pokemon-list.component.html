@@ -21,7 +21,7 @@
         id="pokemonTypeSelect"
         [(ngModel)]="pokemonType"
       >
-        <option selected value="">Sélectionner un type</option>
+        <option selected hidden>Sélectionner un type</option>
         <option
           *ngFor="let type of PokemonTypeEnum | keyvalue"
           [value]="type.key"
@@ -38,7 +38,7 @@
     <button
       (click)="addPokemon()"
       type="submit"
-      [disabled]="pokemonName === ''"
+      [disabled]="pokemonName === '' || !pokemonType"
       class="btn btn-primary"
     >
       Ajouter
@@ -52,9 +52,7 @@
   <li *ngFor="let pokemon of pokemons; let pokemonIndex = index">
     <app-pokemon-item
       class="my-item"
-      [pokemonName]="pokemon.name"
-      [type]="pokemon.type"
-      [creationDate]="pokemon.creation_date"
+      [pokemon]="pokemon"
     ></app-pokemon-item>
   </li>
 </ul>
