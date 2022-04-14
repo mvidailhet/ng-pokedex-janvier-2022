@@ -16,11 +16,11 @@
   <div class="invalid-feedback">
     {{ errorMessage }}
   </div>
-  <div class="col-12">
+  <div class="col-12 mt-2">
     <button
+      (click)="addPokemon()"
       type="submit"
       [disabled]="pokemonName === ''"
-      (click)="addPokemon()"
       class="btn btn-primary"
     >
       Ajouter
@@ -30,7 +30,7 @@
 
 <h2>Pokémons ({{ pokemons.length }})</h2>
 
-<ul>
+<ul class="p-3">
   <li
     routerLink="/pokemon"
     *ngFor="let pokemon of pokemons; let pokemonIndex = index"
@@ -42,10 +42,12 @@
   </li>
 </ul>
 
-<ngb-toast
-  header="Notification de ouf"
-  *ngIf="pokemonJustAdded"
-  (hide)="pokemonJustAdded = false"
->
-  pokemon was added
-</ngb-toast>
+<div class="toast-container p-3">
+  <ngb-toast
+    class="bg-success text-white"
+    *ngIf="pokemonJustAdded"
+    (hide)="pokemonJustAdded = false"
+  >
+    Pokémon ajouté
+  </ngb-toast>
+</div>

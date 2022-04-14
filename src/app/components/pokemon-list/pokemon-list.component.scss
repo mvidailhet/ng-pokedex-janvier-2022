@@ -1,12 +1,13 @@
-li {
-  padding: 30px;
-  font-size: 25px;
-}
-
 .my-item {
   --title-color: red;
 }
 
 .invalid-feedback {
   display: block;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
