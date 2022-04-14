@@ -35,7 +35,7 @@
 </button>
 
 <ul [ngClass]="{ 'red': listIsRed }">
-  <li [ngStyle]="{backgroundColor: getCurrentColor()}" *ngFor="let pokemon of pokemons; let pokemonIndex = index">
+  <li routerLink="/pokemon" [ngStyle]="{backgroundColor: getCurrentColor()}" *ngFor="let pokemon of pokemons; let pokemonIndex = index">
     <app-pokemon-item class="my-item" [pokemonName]="pokemon.name"></app-pokemon-item>
   </li>
 </ul>
