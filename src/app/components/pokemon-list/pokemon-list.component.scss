@@ -7,10 +7,19 @@
 
 .invalid-feedback {
   display: block;
+  text-align: right;
 }
 
 .toast-container {
   position: fixed;
   bottom: 0;
   right: 0;
+}
+
+.pokemon-list li {
+  margin-top:16px;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
