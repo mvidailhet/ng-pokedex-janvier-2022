@@ -1,11 +1,11 @@
 <div class="card" routerLink="/pokemon">
   <div class="card-body row">
-    <div class="col">
-      <h5
-        class="card-title"
-        (mouseleave)="onTitleMouseLeave()"
-        (mouseenter)="onTitleMouseEnter()"
-      >
+    <div
+      class="col"
+      (mouseleave)="onTitleMouseLeave()"
+      (mouseenter)="onTitleMouseEnter()"
+    >
+      <h5 class="card-title" [ngClass]="{ 'bg-dark-grey': showEditTitleIcon }">
         {{ pokemon.name }}
       </h5>
       <i
