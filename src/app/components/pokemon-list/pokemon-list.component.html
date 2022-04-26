@@ -21,7 +21,9 @@
         id="pokemonTypeSelect"
         [(ngModel)]="pokemonType"
       >
-        <option selected hidden [value]="undefined">Sélectionner un type</option>
+        <option selected hidden [value]="undefined">
+          Sélectionner un type
+        </option>
         <option
           *ngFor="let type of PokemonTypeEnum | keyvalue"
           [value]="type.key"
@@ -49,11 +51,15 @@
 <h2>Pokémons ({{ pokemons.length }})</h2>
 
 <ul class="pokemon-list p-3">
+  <li *ngFor="let apiPokemon of apiPokemons">
+    {{ apiPokemon.name }}
+    <span *ngFor="let pokemonType of apiPokemon.types">{{ pokemonType }}</span>
+  </li>
+</ul>
+
+<ul class="pokemon-list p-3">
   <li *ngFor="let pokemon of pokemons; let pokemonIndex = index">
-    <app-pokemon-item
-      class="my-item"
-      [pokemon]="pokemon"
-    ></app-pokemon-item>
+    <app-pokemon-item class="my-item" [pokemon]="pokemon"></app-pokemon-item>
   </li>
 </ul>
 

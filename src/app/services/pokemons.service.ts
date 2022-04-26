@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, tap } from 'rxjs';
 
 export enum PokemonTypeEnum {
   FIRE = 'FIRE',
@@ -18,6 +20,9 @@ export interface Pokemon {
 export class PokemonsService {
   pokemons: Pokemon[] = [];
 
+  constructor(private http: HttpClient) {
+  }
+
   addPokemon(pokemonName: string, pokemonType: PokemonTypeEnum) {
     if (this.pokemonExists(pokemonName)) return false;
     const newPokemon = {
@@ -27,6 +32,14 @@ export class PokemonsService {
     };
     this.pokemons.push(newPokemon);
     return true;
+  }
+
+  getPokemons() {
+    return this.http.get('https://pokeapi.co/api/v2/pokemon?limit=150')
+    .pipe(
+      tap((response: any) => console.log('next url:' + response.next)),
+      map((response: any) => response.results),
+    );
   }
 
   pokemonExists(pokemonName: string | undefined): boolean {
@@ -51,6 +64,4 @@ export class PokemonsService {
       throw new Error('No pokemon to delete found !');
     this.deletePokemon(pokemonToDeleteIndex);
   }
-
-  constructor() {}
 }

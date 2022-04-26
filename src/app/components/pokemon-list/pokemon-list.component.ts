@@ -4,6 +4,12 @@ import {
   PokemonTypeEnum,
 } from 'src/app/services/pokemons.service';
 
+export interface APIPokemons {
+  name: string;
+  url: string;
+  types: string[];
+}
+
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -17,9 +23,15 @@ export class PokemonListComponent implements OnInit {
   errorMessage: string | undefined;
   PokemonTypeEnum = PokemonTypeEnum;
 
+  apiPokemons: APIPokemons[] | undefined;
+
   @ViewChild('pokemonTextInput') pokemonTextInput!: ElementRef;
 
-  constructor(private pokemonsService: PokemonsService) {}
+  constructor(private pokemonsService: PokemonsService) {
+    this.pokemonsService.getPokemons().subscribe((res: any) => {
+      this.apiPokemons = res;
+    });
+  }
 
   ngOnInit(): void {}
 
