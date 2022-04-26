@@ -44,6 +44,16 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
     this.isEditing = false;
   }
 
+  onInputNameKeyPress($event: KeyboardEvent) {
+    console.log($event);
+    if ($event.key === 'Enter') {
+      this.onInputNameBlur();
+    }
+    if ($event.key === 'Escape') {
+      console.log('should cancel');
+    }
+  }
+
   ngOnInit(): void {
   }
 }

@@ -7,7 +7,10 @@
       (click)="$event.stopPropagation()"
     >
       <ng-container *ngIf="!isEditing">
-        <h5 class="card-title" [ngClass]="{ 'bg-dark-grey': showEditTitleIcon }">
+        <h5
+          class="card-title"
+          [ngClass]="{ 'bg-dark-grey': showEditTitleIcon }"
+        >
           {{ pokemon.name }}
         </h5>
         <i
@@ -19,7 +22,14 @@
           *ngIf="showEditTitleIcon"
         ></i>
       </ng-container>
-      <input [(ngModel)]="pokemon.name" #nameInput *ngIf="isEditing" type="text" (blur)="onInputNameBlur()" />
+      <input
+        (keydown)="onInputNameKeyPress($event)"
+        [(ngModel)]="pokemon.name"
+        #nameInput
+        *ngIf="isEditing"
+        type="text"
+        (blur)="onInputNameBlur()"
+      />
     </div>
     <div class="col">
       <span
