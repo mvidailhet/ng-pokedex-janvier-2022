@@ -12,6 +12,7 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
   showEditTitleIcon = false;
   mouseIsOverEditBtn = false;
   isEditing = false;
+  initialPokemonName: string | undefined;
 
   constructor(private pokemonsService: PokemonsService) {
   }
@@ -35,22 +36,36 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
   onEditBtnClick($event: MouseEvent) {
     $event.stopPropagation();
     this.isEditing = true;
+    this.initialPokemonName = this.pokemon.name;
     setTimeout(() => {
       this.inputNameElt.nativeElement.focus();
     }, 0);
   }
 
-  onInputNameBlur() {
+  onInputNameBlur($event?: FocusEvent) {
+    if ($event?.relatedTarget) {
+      const btnElement: HTMLElement = $event?.relatedTarget as HTMLElement;
+      if (btnElement.innerText === 'Annuler') {
+        return;
+      }
+    }
+
     this.isEditing = false;
   }
 
+  cancelEdit() {
+    console.log('cancel edit');
+    if (!this.initialPokemonName) return;
+    this.pokemon.name = this.initialPokemonName;
+    this.onInputNameBlur();
+  }
+
   onInputNameKeyPress($event: KeyboardEvent) {
-    console.log($event);
     if ($event.key === 'Enter') {
       this.onInputNameBlur();
     }
     if ($event.key === 'Escape') {
-      console.log('should cancel');
+      this.cancelEdit();
     }
   }
 

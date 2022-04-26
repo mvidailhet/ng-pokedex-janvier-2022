@@ -22,14 +22,16 @@
           *ngIf="showEditTitleIcon"
         ></i>
       </ng-container>
-      <input
-        (keydown)="onInputNameKeyPress($event)"
-        [(ngModel)]="pokemon.name"
-        #nameInput
-        *ngIf="isEditing"
-        type="text"
-        (blur)="onInputNameBlur()"
-      />
+      <ng-container *ngIf="isEditing">
+        <input
+          (keydown)="onInputNameKeyPress($event)"
+          [(ngModel)]="pokemon.name"
+          #nameInput
+          type="text"
+          (blur)="onInputNameBlur($event)"
+        />
+        <button class="btn btn-danger" (click)="cancelEdit()">Annuler</button>
+      </ng-container>
     </div>
     <div class="col">
       <span
