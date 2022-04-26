@@ -12,6 +12,7 @@
         class="edit-btn bi bi-pencil"
         (mouseenter)="mouseIsOverEditBtn = true"
         (mouseleave)="mouseIsOverEditBtn = false"
+        (click)="onEditBtnClick($event)"
         [ngClass]="{ hover: mouseIsOverEditBtn }"
         *ngIf="showEditTitleIcon"
       ></i>

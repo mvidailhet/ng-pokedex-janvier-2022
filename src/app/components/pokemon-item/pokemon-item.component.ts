@@ -30,6 +30,11 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
     this.showEditTitleIcon = false;
   }
 
+  onEditBtnClick($event: MouseEvent) {
+    $event.stopPropagation();
+    console.log('editing!');
+  }
+
   ngOnInit(): void {
   }
 }
