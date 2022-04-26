@@ -21,7 +21,7 @@
         id="pokemonTypeSelect"
         [(ngModel)]="pokemonType"
       >
-        <option selected hidden>Sélectionner un type</option>
+        <option selected hidden [value]="undefined">Sélectionner un type</option>
         <option
           *ngFor="let type of PokemonTypeEnum | keyvalue"
           [value]="type.key"
