@@ -10,6 +10,7 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
   @Input() pokemon!: Pokemon;
   showEditTitleIcon = false;
   mouseIsOverEditBtn = false;
+  isEditing = false;
 
   constructor(private pokemonsService: PokemonsService) {
   }
@@ -32,7 +33,7 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
 
   onEditBtnClick($event: MouseEvent) {
     $event.stopPropagation();
-    console.log('editing!');
+    this.isEditing = true;
   }
 
   ngOnInit(): void {

@@ -5,17 +5,20 @@
       (mouseleave)="onTitleMouseLeave()"
       (mouseenter)="onTitleMouseEnter()"
     >
-      <h5 class="card-title" [ngClass]="{ 'bg-dark-grey': showEditTitleIcon }">
-        {{ pokemon.name }}
-      </h5>
-      <i
-        class="edit-btn bi bi-pencil"
-        (mouseenter)="mouseIsOverEditBtn = true"
-        (mouseleave)="mouseIsOverEditBtn = false"
-        (click)="onEditBtnClick($event)"
-        [ngClass]="{ hover: mouseIsOverEditBtn }"
-        *ngIf="showEditTitleIcon"
-      ></i>
+      <ng-container *ngIf="!isEditing">
+        <h5 class="card-title" [ngClass]="{ 'bg-dark-grey': showEditTitleIcon }">
+          {{ pokemon.name }}
+        </h5>
+        <i
+          class="edit-btn bi bi-pencil"
+          (mouseenter)="mouseIsOverEditBtn = true"
+          (mouseleave)="mouseIsOverEditBtn = false"
+          (click)="onEditBtnClick($event)"
+          [ngClass]="{ hover: mouseIsOverEditBtn }"
+          *ngIf="showEditTitleIcon"
+        ></i>
+      </ng-container>
+      <input *ngIf="isEditing" type="text" />
     </div>
     <div class="col">
       <span
