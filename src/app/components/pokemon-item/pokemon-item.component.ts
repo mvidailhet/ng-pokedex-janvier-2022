@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Pokemon, PokemonsService, PokemonTypeEnum } from 'src/app/services/pokemons.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { Pokemon, PokemonsService, PokemonTypeEnum } from 'src/app/services/poke
 })
 export class PokemonItemComponent implements OnInit, OnDestroy {
   @Input() pokemon!: Pokemon;
+  @ViewChild('nameInput') inputNameElt!: ElementRef;
   showEditTitleIcon = false;
   mouseIsOverEditBtn = false;
   isEditing = false;
@@ -34,6 +35,13 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
   onEditBtnClick($event: MouseEvent) {
     $event.stopPropagation();
     this.isEditing = true;
+    setTimeout(() => {
+      this.inputNameElt.nativeElement.focus();
+    }, 0);
+  }
+
+  onInputNameBlur() {
+    this.isEditing = false;
   }
 
   ngOnInit(): void {

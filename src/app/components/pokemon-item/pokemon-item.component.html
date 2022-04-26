@@ -4,6 +4,7 @@
       class="col"
       (mouseleave)="onTitleMouseLeave()"
       (mouseenter)="onTitleMouseEnter()"
+      (click)="$event.stopPropagation()"
     >
       <ng-container *ngIf="!isEditing">
         <h5 class="card-title" [ngClass]="{ 'bg-dark-grey': showEditTitleIcon }">
@@ -18,7 +19,7 @@
           *ngIf="showEditTitleIcon"
         ></i>
       </ng-container>
-      <input *ngIf="isEditing" type="text" />
+      <input [(ngModel)]="pokemon.name" #nameInput *ngIf="isEditing" type="text" (blur)="onInputNameBlur()" />
     </div>
     <div class="col">
       <span
