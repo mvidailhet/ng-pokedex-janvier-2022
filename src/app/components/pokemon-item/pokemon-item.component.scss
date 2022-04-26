@@ -28,6 +28,8 @@ $pokemon-type-colors: (
 .card-title {
   color: var(--title-color);
   margin-bottom: 0;
+  display: inline-block;
+  margin-right: 8px;
 }
 
 .close-button-container {
@@ -38,4 +40,9 @@ $pokemon-type-colors: (
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.edit-btn.hover {
+  color: red;
+  transition: color 1s linear;
 }

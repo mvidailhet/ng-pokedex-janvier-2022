@@ -1,16 +1,39 @@
 <div class="card" routerLink="/pokemon">
   <div class="card-body row">
     <div class="col">
-      <h5 class="card-title">{{ pokemon.name }}</h5>
+      <h5
+        class="card-title"
+        (mouseleave)="onTitleMouseLeave()"
+        (mouseenter)="onTitleMouseEnter()"
+      >
+        {{ pokemon.name }}
+      </h5>
+      <i
+        class="edit-btn bi bi-pencil"
+        (mouseenter)="mouseIsOverEditBtn = true"
+        (mouseleave)="mouseIsOverEditBtn = false"
+        [ngClass]="{ hover: mouseIsOverEditBtn }"
+        *ngIf="showEditTitleIcon"
+      ></i>
     </div>
     <div class="col">
-      <span class="badge pokemon-background-type pokemon-background-type-{{pokemon.type}}">{{ pokemon.type }}</span>
+      <span
+        class="badge pokemon-background-type pokemon-background-type-{{
+          pokemon.type
+        }}"
+        >{{ pokemon.type }}</span
+      >
     </div>
     <div class="col">
-      {{ pokemon.creation_date | date:'EEEE, d MMMM y':'':'fr-FR' }}
+      {{ pokemon.creation_date | date: "EEEE, d MMMM y":"":"fr-FR" }}
     </div>
   </div>
   <div class="close-button-container p-3">
-    <button (click)="deleteClick()" type="button" class="btn-close" aria-label="Close"></button>
+    <button
+      (click)="deleteClick()"
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+    ></button>
   </div>
 </div>

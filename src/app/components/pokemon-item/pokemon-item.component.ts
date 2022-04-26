@@ -8,8 +8,11 @@ import { Pokemon, PokemonsService, PokemonTypeEnum } from 'src/app/services/poke
 })
 export class PokemonItemComponent implements OnInit, OnDestroy {
   @Input() pokemon!: Pokemon;
+  showEditTitleIcon = false;
+  mouseIsOverEditBtn = false;
 
-  constructor(private pokemonsService: PokemonsService) {}
+  constructor(private pokemonsService: PokemonsService) {
+  }
 
   ngOnDestroy(): void {
     console.log('pokemon item destroyed', this.pokemon.name);
@@ -17,6 +20,14 @@ export class PokemonItemComponent implements OnInit, OnDestroy {
 
   deleteClick() {
     this.pokemonsService.deletePokemonByName(this.pokemon.name);
+  }
+
+  onTitleMouseEnter() {
+    this.showEditTitleIcon = true;
+  }
+
+  onTitleMouseLeave() {
+    this.showEditTitleIcon = false;
   }
 
   ngOnInit(): void {
